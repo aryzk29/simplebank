@@ -27,7 +27,7 @@ type Entry struct {
 
 type Transfer struct {
 	ID            int64         `json:"id"`
-	FromAccountID sql.NullInt64 `json:"from_account_id"`
+	FromAccountID int64 `json:"from_account_id"`
 	ToAccountID   sql.NullInt64 `json:"to_account_id"`
 	// must be postive
 	Amount    int64     `json:"amount"`
