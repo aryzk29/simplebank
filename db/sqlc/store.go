@@ -40,8 +40,8 @@ func (store *Store) execTx(ctx context.Context, fn func(*Queries) error) error {
 
 // contains the input parameters of the transfer transaction
 type TransferTxParams struct {
-	FromAccountID sql.NullInt64 `json:"from_account_id"`
-	ToAccountID sql.NullInt64 `json:"to_account_id"`
+	FromAccountID int64 `json:"from_account_id"`
+	ToAccountID int64 `json:"to_account_id"`
 	Amount int64 `json:"amount"`
 }
 
@@ -80,7 +80,7 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (Trans
 		}
 
 		result.ToEntry, err = q.CreateEntry(ctx, CreateEntryParams{
-			AccountID: arg.FromAccountID,
+			AccountID: arg.ToAccountID,
 			Amount: arg.Amount,
 		})
 		if err != nil {

@@ -7,7 +7,6 @@ package db
 
 import (
 	"context"
-	"database/sql"
 )
 
 const createEntry = `-- name: CreateEntry :one
@@ -22,7 +21,7 @@ RETURNING id, account_id, amount, created_at
 
 type CreateEntryParams struct {
 	Amount    int64         `json:"amount"`
-	AccountID sql.NullInt64 `json:"account_id"`
+	AccountID int64 `json:"account_id"`
 }
 
 func (q *Queries) CreateEntry(ctx context.Context, arg CreateEntryParams) (Entry, error) {
