@@ -23,10 +23,8 @@ func TestTransferTx(t *testing.T) {
 	results := make(chan TransferTxResult)
 
 	for i := 0; i < n ; i++ {
-		txName := fmt.Sprintf("tx %d", i+1)
 		go func ()  {
-			ctx := context.WithValue(context.Background(), txKey, txName)
-			result, err := store.TransferTx(ctx, TransferTxParams{
+			result, err := store.TransferTx(context.Background(), TransferTxParams{
 				FromAccountID: account1.ID,
 				ToAccountID: account2.ID,
 				Amount: amount,
@@ -113,6 +111,6 @@ func TestTransferTx(t *testing.T) {
 
 	fmt.Println(">> After:", updatedAccount1.Balance, updatedAccount2.Balance)
 	
-		require.Equal(t, account1.Balance - amount * int64(n), updatedAccount1)
-		require.Equal(t, account2.Balance + amount * int64(n), updatedAccount2)
+		require.Equal(t, account1.Balance - amount * int64(n), updatedAccount1.Balance)
+		require.Equal(t, account2.Balance + amount * int64(n), updatedAccount2.Balance)
 }
