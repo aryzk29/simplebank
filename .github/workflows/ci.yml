@@ -43,7 +43,7 @@ jobs:
       - name: install go-migrate
         run: |
           curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz
-          sudo mv migrate.linux-amd64.tar /usr/bin/migrate
+          sudo mv migrate /usr/bin/
           which migrate
 
       - name: Set up Postgres
