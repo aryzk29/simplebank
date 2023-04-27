@@ -13,7 +13,7 @@ type transferRequest struct {
 	fromAccount int64  `json:"from_account" binding:"required,min=1"`
 	toAccount   int64  `json:"to_account" binding:"required,min=1"`
 	amount      int64  `json:amount binding:"required,min=1"`
-	currency    string `json:currency binding:"required"`
+	currency    string `json:currency binding:"required,currency"`
 }
 
 func (server *Server) createTransfer(ctx *gin.Context) {
